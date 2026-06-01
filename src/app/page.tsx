@@ -23,8 +23,8 @@ function MetricCard({ label, value, sub, color = "text-white" }: { label: string
 function VixBadge({ vix, regime }: { vix: number; regime: string }) {
   return (
     <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border ${regimeBg(regime)}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${regime === "CALM" ? "bg-emerald-400 pulse-dot" : regime === "ELEVATED" ? "bg-amber-400 pulse-dot" : regime === "STRESSED" ? "bg-orange-400 pulse-dot" : "bg-red-400 pulse-dot"}`} />
-      <span className="text-sm tabular-nums">VIX {vix.toFixed(1)}</span>
+      <span className={`w-1.5 h-1.5 rounded-full ${regime === "CALM" ? "bg-emerald-400" : regime === "ELEVATED" ? "bg-amber-400" : regime === "STRESSED" ? "bg-orange-400" : "bg-red-400"} animate-pulse`} />
+      <span className="text-sm tabular-nums">VIX {Number(vix).toFixed(1)}</span>
       <span className={`text-xs font-medium ${regimeColor(regime)}`}>{regime}</span>
     </div>
   );
@@ -71,7 +71,8 @@ export default function Dashboard() {
   const cashRatio = portfolio.cash / portfolio.total_value;
   const latestMetric = metrics.length > 0 ? metrics[metrics.length - 1] : null;
   const totalReturn = latestMetric ? latestMetric.cumulative_return : 0;
-  const sharpe = metrics.length > 1 ? (Math.sqrt(252) * metrics.reduce((s, m) => s + m.daily_return, 0) / metrics.length) / (Math.sqrt(metrics.reduce((s, m) => s + m.daily_return ** 2, 0) / metrics.length) + 1e-8) : 0;
+  const dailyReturns = metrics.map(m => m.daily_return);
+  const sharpe = dailyReturns.length > 1 ? (Math.sqrt(252) * dailyReturns.reduce((s, v) => s + v, 0) / dailyReturns.length) / (Math.sqrt(dailyReturns.reduce((s, v) => s + v * v, 0) / dailyReturns.length) + 1e-8) : 0;
   const maxDD = metrics.length > 0 ? Math.min(...metrics.map(m => m.drawdown)) : 0;
   const vix = latestMetric?.vix ?? 0;
   const regime = latestMetric?.regime ?? "N/A";
@@ -108,7 +109,7 @@ export default function Dashboard() {
           <div className="flex items-center gap-3">
             <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-emerald-400 to-blue-500 flex items-center justify-center text-black text-xs font-bold">S</div>
             <span className="font-semibold text-sm tracking-wide">STRATOS</span>
-            <span className="text-[10px] text-zinc-600 border border-zinc-800 rounded px-1.5 py-0.5 ml-1">v11.1</span>
+            <span className="text-[10px] text-zinc-600 border border-zinc-800 rounded px-1.5 py-0.5 ml-1">v11.2</span>
           </div>
           <div className="flex items-center gap-4 text-xs text-zinc-500">
             {vix > 0 && <VixBadge vix={vix} regime={regime} />}
@@ -354,7 +355,7 @@ export default function Dashboard() {
             ].map((r) => (
               <div key={r.label} className={`bg-[#111118] border border-white/5 rounded-xl p-4 ${r.label.toLowerCase() === regime.toLowerCase() ? "ring-1 ring-white/20" : ""}`}>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className={`w-2 h-2 rounded-full bg-${r.color}-400 ${r.label.toLowerCase() === regime.toLowerCase() ? "pulse-dot" : ""}`} />
+                  <span className={`w-2 h-2 rounded-full bg-${r.color}-400 ${r.label.toLowerCase() === regime.toLowerCase() ? "animate-pulse" : ""}`} />
                   <span className="text-sm font-medium">{r.label}</span>
                 </div>
                 <div className="text-xs text-zinc-500 mb-2">VIX {r.range}</div>
@@ -367,7 +368,7 @@ export default function Dashboard() {
 
         {/* Footer */}
         <div className="text-center text-xs text-zinc-600 pt-8 pb-4">
-          Stratos AI Hedge Fund &middot; Paper Trading V11.1 &middot; Data: nsefetch → yfinance → mock &middot; Not SEBI registered &middot; Educational purposes only
+          Stratos AI Hedge Fund &middot; Paper Trading V11.2 &middot; Data: niftyterminal → yfinance → mock &middot; Not SEBI registered &middot; Educational purposes only
         </div>
       </main>
     </div>
