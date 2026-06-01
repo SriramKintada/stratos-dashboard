@@ -1,0 +1,61 @@
+{
+  "initialized": true,
+  "start_date": "2026-06-01",
+  "corpus": 5000000,
+  "cash": 815795.75,
+  "positions": {
+    "RELIANCE": {
+      "shares": 442,
+      "avg_price": 1327.3
+    },
+    "TCS": {
+      "shares": 180,
+      "avg_price": 2324.0
+    },
+    "INFY": {
+      "shares": 345,
+      "avg_price": 1212.9
+    },
+    "HDFCBANK": {
+      "shares": 562,
+      "avg_price": 745.0
+    },
+    "ICICIBANK": {
+      "shares": 267,
+      "avg_price": 1254.6
+    },
+    "BHARTIARTL": {
+      "shares": 183,
+      "avg_price": 1822.5
+    },
+    "ITC": {
+      "shares": 1028,
+      "avg_price": 285.2
+    },
+    "SBIN": {
+      "shares": 304,
+      "avg_price": 962.8
+    },
+    "LT": {
+      "shares": 62,
+      "avg_price": 4039.9
+    },
+    "KOTAKBANK": {
+      "shares": 659,
+      "avg_price": 381.55
+    },
+    "AXISBANK": {
+      "shares": 196,
+      "avg_price": 1279.9
+    },
+    "ASIANPAINT": {
+      "shares": 123,
+      "avg_price": 2723.0
+    }
+  },
+  "total_value": 5000000.0,
+  "daily_start_value": 5000000,
+  "trades_today": 12,
+  "last_update": "2026-06-01 10:24:13.630653",
+  "version": "v11.1"
+}

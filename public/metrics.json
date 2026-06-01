@@ -1,0 +1,13 @@
+[
+  {
+    "date": "2026-06-01",
+    "portfolio_value": "5000000.0",
+    "daily_return": "0",
+    "cumulative_return": "0.0",
+    "drawdown": "0.0",
+    "vix": "16.05",
+    "cash_ratio": "0.1632",
+    "regime": "ELEVATED",
+    "data_source": "yfinance"
+  }
+]
