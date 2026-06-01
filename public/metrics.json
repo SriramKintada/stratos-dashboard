@@ -5,9 +5,9 @@
     "daily_return": "0",
     "cumulative_return": "0.0",
     "drawdown": "0.0",
-    "vix": "16.17",
+    "vix": "16.22",
     "cash_ratio": "0.1632",
     "regime": "ELEVATED",
-    "data_source": "niftyterminal"
+    "data_source": "yfinance"
   }
 ]
