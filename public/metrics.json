@@ -5,7 +5,7 @@
     "daily_return": "0",
     "cumulative_return": "0.0",
     "drawdown": "0.0",
-    "vix": "16.31",
+    "vix": "16.3",
     "cash_ratio": "0.1632",
     "regime": "ELEVATED",
     "data_source": "yfinance"
